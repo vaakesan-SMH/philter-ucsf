@@ -780,7 +780,7 @@ class Philter:
             #keeps a record of all phi coordinates and text for a given file
             # data = {}
         
-            filename = root+f
+            filename = os.path.join(root, f)
 
             if filename.split(".")[-1] not in allowed_filetypes:
                 if self.verbose:
@@ -794,7 +794,7 @@ class Philter:
 
             #now we transform the text
             fbase, fext = os.path.splitext(f)
-            outpathfbase = out_path + fbase
+            outpathfbase = os.path.join(out_path, fbase)
             if self.outformat == "asterisk":
                 with open(outpathfbase+".txt", "w", encoding='utf-8', errors='surrogateescape') as f:
                     contents = self.transform_text_asterisk(txt, filename)
@@ -1079,9 +1079,9 @@ class Philter:
                 true_negatives  = [] #non-phi we correctly identify
                 true_negatives_coords = []
 
-                original_filename = note_path+f
-                philtered_filename = root+f
-                anno_filename = anno_path+''.join(f.split(".")[0])+anno_suffix
+                original_filename = os.path.join(note_path, f)
+                philtered_filename = os.path.join(root, f)
+                anno_filename = os.path.join(anno_path, ''.join(f.split(".")[0]) + anno_suffix)
 
                 # if len(anno_suffix) > 0:
                 #     anno_filename = anno_folder+f.split(".")[0]+anno_suffix
